@@ -3,6 +3,7 @@ package ma.noobs.pet.model;
 public class User {
 	private int id;
 	private String username;
+	private String password;
 	private String email;
 	private String phone;
 	private String company;
@@ -14,7 +15,18 @@ public class User {
 		
 	}
 	
-	public User(int id, String username, String email, String phone, String company, String address, boolean isAdmin) {
+	public User(String username,String password, String email, String phone, String company, String address, boolean isAdmin) {
+		this.username = username;
+		this.email = email;
+		this.phone = phone;
+		this.company = company;
+		this.address = address;
+		this.isAdmin = isAdmin;
+		this.password = password;
+	}
+	
+	
+	public User(int id, String username,String password, String email, String phone, String company, String address, boolean isAdmin) {
 		this.id = id;
 		this.username = username;
 		this.email = email;
@@ -22,6 +34,7 @@ public class User {
 		this.company = company;
 		this.address = address;
 		this.isAdmin = isAdmin;
+		this.password = password;
 	}
 
 	public int getId() {
@@ -78,6 +91,14 @@ public class User {
 
 	public void setAdmin(boolean isAdmin) {
 		this.isAdmin = isAdmin;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
 	

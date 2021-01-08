@@ -1,15 +1,36 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1" import="java.util.* , ma.noobs.pet.model.Currency"%>
+
 <div class="right_content">
         	<div class="languages_box">
             <span class="red">Languages:</span>
-            <a href="#" class="selected"><img src="images/gb.gif" alt="" title="" border="0" /></a>
-            <a href="#"><img src="images/fr.gif" alt="" title="" border="0" /></a>
-            <a href="#"><img src="images/de.gif" alt="" title="" border="0" /></a>
+            <a href="./ChangeLanguage?ln=en&page=<%= request.getRequestURI().substring(request.getRequestURI().lastIndexOf("/")+1) %>" <% 
+         if(((ResourceBundle)request.getSession().getAttribute("messages")).getBaseBundleName().equals("MessagesBundleEN")) out.println("class='selected'");
+         %>><img src="images/gb.gif" alt="" title="" border="0" /></a>
+            <a href="./ChangeLanguage?ln=fr&page=<%= request.getRequestURI().substring(request.getRequestURI().lastIndexOf("/")+1) %>" <% 
+         if(((ResourceBundle)request.getSession().getAttribute("messages")).getBaseBundleName().equals("MessagesBundleFR")) out.println("class='selected'");
+         %>><img src="images/fr.gif" alt="" title="" border="0" /></a>
+            <a href="./ChangeLanguage?ln=de&page=<%= request.getRequestURI().substring(request.getRequestURI().lastIndexOf("/")+1) %>" <% 
+         if(((ResourceBundle)request.getSession().getAttribute("messages")).getBaseBundleName().equals("MessagesBundleDE")) out.println("class='selected'");
+         %>><img src="images/de.gif" alt="" title="" border="0" /></a>
             </div>
                 <div class="currency">
                 <span class="red">Currency: </span>
-                <a href="#">GBP</a>
-                <a href="#">EUR</a>
-                <a href="#" class="selected">USD</a>
+                <a href="./ChangeCurrency?curr=GBP&page=<%= request.getRequestURI().substring(request.getRequestURI().lastIndexOf("/")+1) %>"
+                <% 
+         if(((Currency)request.getSession().getAttribute("currency")).getName().equals("GBP")) out.println("class='selected'");
+         %>
+                >GBP</a>
+                <a href="./ChangeCurrency?curr=EUR&page=<%= request.getRequestURI().substring(request.getRequestURI().lastIndexOf("/")+1) %>"
+                <% 
+         if(((Currency)request.getSession().getAttribute("currency")).getName().equals("EUR")) out.println("class='selected'");
+         %>
+                >EUR</a>
+                <a href="./ChangeCurrency?curr=USD&page=<%= request.getRequestURI().substring(request.getRequestURI().lastIndexOf("/")+1) %>" 
+                <% 
+         if(((Currency)request.getSession().getAttribute("currency")).getName().equals("USD")) out.println("class='selected'");
+         %>
+                >USD</a>
                 </div>
                 
                 

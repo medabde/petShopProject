@@ -4,15 +4,17 @@ public class Order {
 	private int id;
 	private User user;
 	private Pet pet;
+	private int quantity;
 	
 	public Order() {
 		
 	}
 
-	public Order(int id, User user, Pet pet) {
+	public Order(int id, User user, Pet pet, int quantity) {
 		this.id = id;
 		this.user = user;
 		this.pet = pet;
+		this.quantity = quantity;
 	}
 
 	public int getId() {
@@ -37,6 +39,14 @@ public class Order {
 
 	public void setPet(Pet pet) {
 		this.pet = pet;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 	
 	
