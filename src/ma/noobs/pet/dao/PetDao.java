@@ -98,6 +98,86 @@ public class PetDao {
 		return list;
 	}
 
+	public List<Pet> getFeaturedPets(){
+		String query = String.format("SELECT * FROM %s WHERE %s = '%d'", tableName,columns[10],1);
+		List<Pet> list = new ArrayList<>();
+		
+		try {
+			Statement stmt = conn.createStatement();  
+			ResultSet rs;
+			rs = stmt.executeQuery(query);
+			while(rs.next()) {
+				Pet pet = new Pet();
+				pet.setId(rs.getInt(columns[0]));
+				pet.setName(rs.getString(columns[1]));
+				pet.setPicture(rs.getString(columns[2]));
+				pet.setDescription(rs.getString(columns[3]));
+				pet.setDetails(rs.getString(columns[4]));
+				pet.setPrice(rs.getDouble(columns[5]));
+				pet.setPromotion(rs.getInt(columns[6]));
+				pet.setSpecial(rs.getBoolean(columns[7]));
+				pet.setNew(rs.getBoolean(columns[8]));
+				pet.setFeatured(rs.getBoolean(columns[10]));
+				
+				
+				CategoryDao dao = new CategoryDao();
+				Category cat = dao.get(rs.getInt(columns[9]));
+				pet.setCategory(cat);
+				
+				
+				list.add(pet);
+			}
+						
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+		
+		
+		
+		return list;
+	}
+	
+	public List<Pet> getNewPets(){
+		String query = String.format("SELECT * FROM %s WHERE %s = '%d'", tableName,columns[8],1);
+		List<Pet> list = new ArrayList<>();
+		
+		try {
+			Statement stmt = conn.createStatement();  
+			ResultSet rs;
+			rs = stmt.executeQuery(query);
+			while(rs.next()) {
+				Pet pet = new Pet();
+				pet.setId(rs.getInt(columns[0]));
+				pet.setName(rs.getString(columns[1]));
+				pet.setPicture(rs.getString(columns[2]));
+				pet.setDescription(rs.getString(columns[3]));
+				pet.setDetails(rs.getString(columns[4]));
+				pet.setPrice(rs.getDouble(columns[5]));
+				pet.setPromotion(rs.getInt(columns[6]));
+				pet.setSpecial(rs.getBoolean(columns[7]));
+				pet.setNew(rs.getBoolean(columns[8]));
+				pet.setFeatured(rs.getBoolean(columns[10]));
+				
+				
+				CategoryDao dao = new CategoryDao();
+				Category cat = dao.get(rs.getInt(columns[9]));
+				pet.setCategory(cat);
+				
+				
+				list.add(pet);
+			}
+						
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+		
+		
+		
+		return list;
+		
+	}
 	
 	public void save(Pet t) {
 		String query = String.format("INSERT INTO %s(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')", 
