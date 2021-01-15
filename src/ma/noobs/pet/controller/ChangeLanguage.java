@@ -56,11 +56,7 @@ public class ChangeLanguage extends HttpServlet {
 		
 		
 		request.getSession().setAttribute("messages", messages);
-		
-		String page = request.getParameter("page").substring(request.getParameter("page").lastIndexOf("/")+1);
-
-		
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher((page==null)?"home.jsp":page) ;
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("home.jsp") ;
 	    
 	    requestDispatcher.forward(request, response) ;
 	}

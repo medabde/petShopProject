@@ -1,5 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1" import='ma.noobs.pet.dao.* , ma.noobs.pet.model.*'%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%
+
+try{	
+	PetDao petDao = new PetDao();
+	if(request.getParameter("id")==null)response.sendRedirect("home.jsp");
+	Pet pet = petDao.get(Integer.valueOf(request.getParameter("id")));
+	if(pet==null) response.sendRedirect("home.jsp");
+	request.setAttribute("pet", pet);
+}catch(Exception e){
+	response.sendRedirect("home.jsp");
+}
+
+
+%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -23,9 +39,9 @@
        <div class="center_content">
        	<div class="left_content">
         	<div class="crumb_nav">
-            <a href="index.html">home</a> &gt;&gt; product name
+            <a href="index.html">home</a> &gt;&gt; <c:out value="${pet.getName()}"/>
             </div>
-            <div class="title"><span class="title_icon"><img src="images/bullet1.gif" alt="" title="" /></span>Product name</div>
+            <div class="title"><span class="title_icon"><img src="images/bullet1.gif" alt="" title="" /></span><c:out value="${pet.getName()}"/></div>
         
         	<div class="feat_prod_box_details">
             

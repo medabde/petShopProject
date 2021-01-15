@@ -55,9 +55,8 @@ public class ChangeCurrency extends HttpServlet {
 		
 		
 		request.getSession().setAttribute("currency", curr );
-		String page = request.getParameter("page").substring(request.getParameter("page").lastIndexOf("/")+1);
 		
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher((page==null)?"home.jsp":page) ;
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("home.jsp") ;
 	    
 	    requestDispatcher.forward(request, response) ;
 		
