@@ -5,10 +5,17 @@
 
 try{	
 	PetDao petDao = new PetDao();
-	if(request.getParameter("id")==null)response.sendRedirect("home.jsp");
 	Pet pet = petDao.get(Integer.valueOf(request.getParameter("id")));
 	if(pet==null) response.sendRedirect("home.jsp");
 	request.setAttribute("pet", pet);
+	
+	Currency c =(Currency)session.getAttribute("currency");
+	
+	request.setAttribute("currencyCode", c.getCode());
+	request.setAttribute("currencyMultiplier", c.getMultiplier());
+	
+	double d = (double) request.getAttribute("currencyMultiplier");
+	
 }catch(Exception e){
 	response.sendRedirect("home.jsp");
 }
@@ -39,13 +46,13 @@ try{
        <div class="center_content">
        	<div class="left_content">
         	<div class="crumb_nav">
-            <a href="index.html">home</a> &gt;&gt; <c:out value="${pet.getName()}"/>
+            <a href="home.jsp">home</a> &gt;&gt; <c:out value="${pet.getName()}"/>
             </div>
             <div class="title"><span class="title_icon"><img src="images/bullet1.gif" alt="" title="" /></span><c:out value="${pet.getName()}"/></div>
         
         	<div class="feat_prod_box_details">
             
-            	<div class="prod_img"><a href="details.html"><img src="images/prod1.gif" alt="" title="" border="0" /></a>
+            	<div class="prod_img"><a href="details.jsp?id=${pet.getId()}"><img style="height:87px;width: 93px;" src="${pet.getPicture()}" alt="" title="" border="0" /></a>
                 <br /><br />
                 <a href="images/big_pic.jpg" rel="lightbox"><img src="images/zoom.gif" alt="" title="" border="0" /></a>
                 </div>
@@ -54,14 +61,9 @@ try{
                 	<div class="box_top"></div>
                     <div class="box_center">
                     <div class="prod_title">Details</div>
-                    <p class="details">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.<br />
-                   Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.                    </p>
-                    <div class="price"><strong>PRICE:</strong> <span class="red">100 $</span></div>
-                    <div class="price"><strong>COLORS:</strong> 
-                    <span class="colors"><img src="images/color1.gif" alt="" title="" border="0" /></span>
-                    <span class="colors"><img src="images/color2.gif" alt="" title="" border="0" /></span>
-                    <span class="colors"><img src="images/color3.gif" alt="" title="" border="0" /></span>                    </div>
-                    <a href="details.html" class="more"><img src="images/order_now.gif" alt="" title="" border="0" /></a>
+                    <p class="details">${pet.getDescription()}</p>
+                    <div class="price"><strong>PRICE:</strong> <span class="red">${String.format("%.2f", pet.getPrice() * currencyMultiplier)} ${currencyCode}</span></div>
+                    <a href="details.jsp?id=${pet.getId()}" class="more"><img src="images/order_now.gif" alt="" title="" border="0" /></a>
                     <div class="clear"></div>
                     </div>
                     
@@ -81,16 +83,8 @@ try{
             <div class="tabs-container">
             
                     <div style="display: block;" class="tab" id="tab1">
-                                        <p class="more_details">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
-                                        </p>
-                            <ul class="list">
-                            <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit</a></li>
-                            <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit</a></li>
-                            <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit</a></li>
-                            <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit</a></li>                                          
-                            </ul>
-                                         <p class="more_details">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
-                                        </p>                           
+                                        <p class="more_details">${pet.getDetails()}
+                                        </p>                     
                     </div>	
                     
                             <div style="display: none;" class="tab" id="tab2">

@@ -7,7 +7,7 @@ public class ConnectionDb{
 	private static final String url = "jdbc:mysql://localhost:3306/";
 	private static final String username = "root";
 	private static final String password = "";
-	private static final String dbName = "jeeprjct";
+	private static final String dbName = "jeeprjct?serverTimezone=UTC";
 	
 	private static Connection con;
 	
