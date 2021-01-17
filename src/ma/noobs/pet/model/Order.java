@@ -1,6 +1,8 @@
 package ma.noobs.pet.model;
 
-public class Order {
+import java.io.Serializable;
+
+public class Order  implements Serializable{
 	private int id;
 	private User user;
 	private Pet pet;

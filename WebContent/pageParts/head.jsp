@@ -44,7 +44,7 @@ if(request.getSession().getAttribute("user")==null){
             <ul>                                                                       
             <li <%if(request.getParameter("page")!=null)if(request.getParameter("page").equals("home")) out.print("class=\"selected\" "); %> ><a href="home.jsp">Home</a></li>
             <li <%if(request.getParameter("page")!=null)if(request.getParameter("page").equals("about")) out.print("class=\"selected\" "); %> ><a href="about.jsp">About Us</a></li>
-            <li <%if(request.getParameter("page")!=null)if(request.getParameter("page").equals("categories")) out.print("class=\"selected\" "); %>  ><a href="categorieslist.jsp" >Categories</a></li>
+            <li <%if(request.getParameter("page")!=null)if(request.getParameter("page").equals("pets")) out.print("class=\"selected\" "); %>  ><a href="category.jsp?id=0" >Pets</a></li>
             <li <%if(request.getParameter("page")!=null)if(request.getParameter("page").equals("specials")) out.print("class=\"selected\" "); %> ><a href="specials.jsp" >Special Pets</a></li>
                         
             <c:if test="${user == null}">

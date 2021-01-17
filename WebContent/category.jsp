@@ -38,7 +38,7 @@
 <div id="wrap">
 
        <jsp:include page="pageParts/head.jsp" flush="true">
-		    <jsp:param name="page" value="category"/>
+		    <jsp:param name="page" value="pets"/>
 		</jsp:include>
        
        <div class="center_content">
@@ -46,7 +46,7 @@
         	<div class="crumb_nav">
             <a href="./home.jsp">home</a> &gt;&gt; ${cat.getName()}(${pets.size() })
             </div>
-            <div class="title"><span class="title_icon"><img src="images/bullet1.gif" alt="" title="" /></span>Category ${cat.getName()}</div>
+            <div class="title"><span class="title_icon"><img src="images/bullet1.gif" alt="" title="" /></span>${cat.getName()}</div>
            
            <div class="new_products">
     				<c:forEach items="${pets}" var="pet">

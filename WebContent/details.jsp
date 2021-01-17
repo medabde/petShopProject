@@ -8,7 +8,7 @@ try{
 	Pet pet = petDao.get(Integer.parseInt(request.getParameter("id")));
 	if(pet==null) response.sendRedirect("home.jsp");
 	request.setAttribute("pet", pet);
-	request.setAttribute("relatedPets",petDao.getFromCat(pet.getCategory().getId()) );
+	request.setAttribute("relatedPets",petDao.getFromCat((long)pet.getCategory().getId()) );
 	Currency c =(Currency)session.getAttribute("currency");
 	
 	request.setAttribute("currencyCode", c.getCode());

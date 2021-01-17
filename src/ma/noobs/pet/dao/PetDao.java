@@ -102,7 +102,7 @@ public class PetDao {
 	}
 
 	
-	public List<Pet> getFromCat(int id) {
+	public List<Pet> getFromCat(long id) {
 		String query = String.format("SELECT * FROM %s WHERE %s = %d", tableName,columns[9],id);
 		List<Pet> list = new ArrayList<>();
 		
