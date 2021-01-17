@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" import="java.util.* , ma.noobs.pet.model.Currency , ma.noobs.pet.model.Category , ma.noobs.pet.dao.CategoryDao,ma.noobs.pet.model.Pet , ma.noobs.pet.dao.PetDao"%>
+    pageEncoding="ISO-8859-1" import="java.util.* , ma.noobs.pet.model.Currency ,ma.noobs.pet.model.Order, ma.noobs.pet.model.Category , ma.noobs.pet.dao.CategoryDao,ma.noobs.pet.model.Pet , ma.noobs.pet.dao.PetDao"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 
 <%
@@ -10,6 +10,20 @@
 	List<Pet> promotedPets = petdao.getPromotedPets();
 	request.setAttribute("cats", categories);
 	request.setAttribute("promotedPets", promotedPets);
+	
+	Currency curr =(Currency)session.getAttribute("currency");
+	
+	request.setAttribute("currencyCode", curr.getCode());
+	request.setAttribute("currencyMultiplier", curr.getMultiplier());
+	
+	List<Order> o = (List) request.getSession().getAttribute("orders"); 
+	double total =0.0;
+	for(int i = 0;i< o.size();i++){
+		total += (o.get(i).getPet().getPrice()*o.get(i).getQuantity());
+	}
+	request.setAttribute("total", total);
+	
+	
 %>
 
 <div class="right_content">
@@ -48,7 +62,7 @@
               <div class="cart">
                   <div class="title"><span class="title_icon"><img src="images/cart.gif" alt="" title="" /></span>My cart</div>
                   <div class="home_cart_content">
-                  3 x items | <span class="red">TOTAL: 100$</span>
+                  ${orders.size()} x items | <span class="red">TOTAL: ${String.format("%.2f", total * currencyMultiplier)} ${currencyCode}</span>
                   </div>
                   <a href="cart.jsp" class="view_cart">view cart</a>
               

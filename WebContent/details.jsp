@@ -8,7 +8,7 @@ try{
 	Pet pet = petDao.get(Integer.valueOf(request.getParameter("id")));
 	if(pet==null) response.sendRedirect("home.jsp");
 	request.setAttribute("pet", pet);
-	
+	request.setAttribute("relatedPets",petDao.getFromCat(pet.getCategory().getId()) );
 	Currency c =(Currency)session.getAttribute("currency");
 	
 	request.setAttribute("currencyCode", c.getCode());
@@ -63,7 +63,7 @@ try{
                     <div class="prod_title">Details</div>
                     <p class="details">${pet.getDescription()}</p>
                     <div class="price"><strong>PRICE:</strong> <span class="red">${String.format("%.2f", pet.getPrice() * currencyMultiplier)} ${currencyCode}</span></div>
-                    <a href="details.jsp?id=${pet.getId()}" class="more"><img src="images/order_now.gif" alt="" title="" border="0" /></a>
+                    <a href="./PlaceOrder?id=${pet.getId()}" class="more"><img src="images/order_now.gif" alt="" title="" border="0" /></a>
                     <div class="clear"></div>
                     </div>
                     
@@ -88,50 +88,20 @@ try{
                     </div>	
                     
                             <div style="display: none;" class="tab" id="tab2">
-                    <div class="new_prod_box">
-                        <a href="details.html">product name</a>
-                        <div class="new_prod_bg">
-                        <a href="details.html"><img src="images/thumb1.gif" alt="" title="" class="thumb" border="0" /></a>
-                        </div>           
-                    </div>
                     
-                    <div class="new_prod_box">
-                        <a href="details.html">product name</a>
-                        <div class="new_prod_bg">
-                        <a href="details.html"><img src="images/thumb2.gif" alt="" title="" class="thumb" border="0" /></a>
-                        </div>           
-                    </div>                    
                     
-                    <div class="new_prod_box">
-                        <a href="details.html">product name</a>
-                        <div class="new_prod_bg">
-                        <a href="details.html"><img src="images/thumb3.gif" alt="" title="" class="thumb" border="0" /></a>
-                        </div>           
-                    </div>    
-
-                    <div class="new_prod_box">
-                        <a href="details.html">product name</a>
-                        <div class="new_prod_bg">
-                        <a href="details.html"><img src="images/thumb1.gif" alt="" title="" class="thumb" border="0" /></a>
-                        </div>           
-                    </div>
-                    
-                    <div class="new_prod_box">
-                        <a href="details.html">product name</a>
-                        <div class="new_prod_bg">
-                        <a href="details.html"><img src="images/thumb2.gif" alt="" title="" class="thumb" border="0" /></a>
-                        </div>           
-                    </div>                    
-                    
-                    <div class="new_prod_box">
-                        <a href="details.html">product name</a>
-                        <div class="new_prod_bg">
-                        <a href="details.html"><img src="images/thumb3.gif" alt="" title="" class="thumb" border="0" /></a>
-                        </div>           
-                    </div>  
-
-
-                   
+                    <%int j=0; %>
+                    <c:forEach items="${relatedPets}" var="mapet">
+		                        <%if(j==5)break;else j++; %>
+		                        <c:if test="${mapet.getId() != pet.getId()}">
+								   <div class="new_prod_box">
+			                        <a href="details.jsp?id=${mapet.getId()}">${mapet.getName()}</a>
+			                        <div class="new_prod_bg">
+			                        <a href="details.jsp?id=${mapet.getId()}"><img style="height:87px;width: 93px;" src="${mapet.getPicture()}" alt="" title="" class="thumb" border="0" /></a>
+			                        </div>           
+			                    </div>
+								</c:if>
+					</c:forEach>
                     <div class="clear"></div>
                             </div>	
             

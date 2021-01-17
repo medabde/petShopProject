@@ -10,6 +10,18 @@ public class Order {
 		
 	}
 
+	public Order(User user, Pet pet, int quantity) {
+		this.user = user;
+		this.pet = pet;
+		this.quantity = quantity;
+	}
+	
+	public Order(Pet pet, int quantity) {
+		this.pet = pet;
+		this.quantity = quantity;
+	}
+	
+	
 	public Order(int id, User user, Pet pet, int quantity) {
 		this.id = id;
 		this.user = user;

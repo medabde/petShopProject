@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" import="java.util.* , ma.noobs.pet.model.Currency"%>
+    pageEncoding="ISO-8859-1" import="java.util.* , ma.noobs.pet.model.Currency , ma.noobs.pet.model.Order , ma.noobs.pet.model.User,ma.noobs.pet.dao.*"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+
 <%
 if(request.getSession().getAttribute("messages") == null){
 	ResourceBundle messagesEN = ResourceBundle.getBundle("MessagesBundleEN", new Locale("en", "US"));
@@ -8,6 +10,14 @@ if(request.getSession().getAttribute("messages") == null){
 if(request.getSession().getAttribute("currency")==null){
 	Currency curr = new Currency("USD",9.0,"&#36;");
 	request.getSession().setAttribute("currency", curr);
+}
+
+if(request.getSession().getAttribute("user")==null){
+	if(request.getSession().getAttribute("orders")==null) request.getSession().setAttribute("orders", new ArrayList<Order>());
+}else{
+	OrderDao dao = new OrderDao();
+	List<Order> orders = dao.getUserOrders(((User)request.getSession().getAttribute("user")).getId());
+	if(request.getSession().getAttribute("orders")==null) request.getSession().setAttribute("orders", orders);
 }
 
 %>
@@ -22,9 +32,22 @@ if(request.getSession().getAttribute("currency")==null){
             <li <%if(request.getParameter("page")!=null)if(request.getParameter("page").equals("about")) out.print("class=\"selected\" "); %> ><a href="about.jsp">About Us</a></li>
             <li <%if(request.getParameter("page")!=null)if(request.getParameter("page").equals("categories")) out.print("class=\"selected\" "); %>  ><a href="categorieslist.jsp" >Categories</a></li>
             <li <%if(request.getParameter("page")!=null)if(request.getParameter("page").equals("specials")) out.print("class=\"selected\" "); %> ><a href="specials.jsp" >Special Pets</a></li>
-            <li><a href="login.jsp" >my account</a></li>
-            <li <%if(request.getParameter("page")!=null)if(request.getParameter("page").equals("register")) out.print("class=\"selected\" "); %> ><a href="register.jsp">Register</a></li>
+                        
+            <c:if test="${user == null}">
+	            <li <%if(request.getParameter("page")!=null)if(request.getParameter("page").equals("register")) out.print("class=\"selected\" "); %> ><a href="register.jsp">Register</a></li>
+				
+	            <li <%if(request.getParameter("page")!=null)if(request.getParameter("page").equals("login")) out.print("class=\"selected\" "); %> ><a href="login.jsp">Login</a></li>
+            
+			</c:if>
+			<c:if test="${user != null}">
+			
+	            <li <%if(request.getParameter("page")!=null)if(request.getParameter("page").equals("myAccount")) out.print("class=\"selected\" "); %>  ><a href="myAccount.jsp" >My account</a></li>
+					
+                <li><a href="./Disconnect" >Disconnect</a></li>
+	            
+			</c:if>
             <li <%if(request.getParameter("page")!=null)if(request.getParameter("page").equals("contact")) out.print("class=\"selected\" "); %> ><a href="contact.jsp">Contact Us</a></li>
+            
             </ul>
         </div>     
 </div> 
