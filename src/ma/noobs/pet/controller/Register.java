@@ -48,11 +48,21 @@ public class Register extends HttpServlet {
 		String address = request.getParameter("address");
 		
 		UserDao dao = new UserDao();
+		
+		if(dao.isUserNameExist(username)) {
+			request.setAttribute("errorMessage", "Username taken .. choose another one!");
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("register.jsp") ;
+		    requestDispatcher.forward(request, response) ;
+		    return;
+			
+		}
+		
 		User newUser = new User(username,pass,email,phone,company,address,false);
 		dao.save(newUser);
 		
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("./CheckLogin") ;
 	    requestDispatcher.forward(request, response) ;
+	    return;
 	}
 
 }

@@ -21,7 +21,7 @@ public class PetDao {
 	
 	
 	
-	public Pet get(long id) {
+	public Pet get(int id) {
 		String query = String.format("SELECT * FROM %s WHERE id = %d", tableName,id);
 		Pet pet = new Pet();
 		
@@ -102,7 +102,7 @@ public class PetDao {
 	}
 
 	
-	public List<Pet> getFromCat(long id) {
+	public List<Pet> getFromCat(int id) {
 		String query = String.format("SELECT * FROM %s WHERE %s = %d", tableName,columns[9],id);
 		List<Pet> list = new ArrayList<>();
 		

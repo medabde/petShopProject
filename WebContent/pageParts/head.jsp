@@ -13,6 +13,20 @@ if(request.getSession().getAttribute("currency")==null){
 }
 
 if(request.getSession().getAttribute("user")==null){
+	Cookie[] cookies = request.getCookies();
+	UserDao dao = new UserDao();
+	
+	if (cookies != null) {
+	 for (Cookie cookie : cookies) {
+	   if (cookie.getName().equals("userId") && !cookie.getValue().equals("-1")) {
+		   request.getSession().setAttribute("user",dao.get(Integer.parseInt(cookie.getValue())));
+		}
+	  }
+	}
+}
+
+
+if(request.getSession().getAttribute("user")==null){
 	if(request.getSession().getAttribute("orders")==null) request.getSession().setAttribute("orders", new ArrayList<Order>());
 }else{
 	OrderDao dao = new OrderDao();

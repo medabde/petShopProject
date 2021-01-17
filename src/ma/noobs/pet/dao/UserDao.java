@@ -125,6 +125,27 @@ public class UserDao {
 		}  
 		
 	}
+	
+	public boolean isUserNameExist(String username) {
+		String query = String.format("SELECT * FROM %s WHERE %s = '%s'", tableName,columns[1],username);
+		
+		try {
+			Statement stmt = conn.createStatement();  
+			ResultSet rs;
+			rs = stmt.executeQuery(query);
+			while(rs.next()) {
+				return true;
+			}
+						
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+		
+		
+		
+		return false;
+	}
 
 	
 	public void delete(User t) {

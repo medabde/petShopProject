@@ -37,12 +37,12 @@
 
                     <div class="form_row">
                     <label class="contact"><strong>Password:</strong></label>
-                    <input type="text" name="pass" class="contact_input" required/>
+                    <input type="password" name="pass" class="contact_input" required/>
                     </div> 
 
                     <div class="form_row">
                     <label class="contact"><strong>Email:</strong></label>
-                    <input type="text" name="email" class="contact_input" required/>
+                    <input type="email" name="email" class="contact_input" required/>
                     </div>
 
 
@@ -66,7 +66,9 @@
                         <input type="checkbox" name="terms" required />
                         I agree to the <a href="#">terms &amp; conditions</a>                        </div>
                     </div> 
-
+                    <p style="color:red">
+                    	${errorMessage}
+                    </p>
                     
                     <div class="form_row">
                     <input type="submit" class="register" value="register" />

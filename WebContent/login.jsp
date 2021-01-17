@@ -37,7 +37,7 @@
 
                     <div class="form_row">
                     <label class="contact"><strong>Password:</strong></label>
-                    <input type="text" name="pass" class="contact_input" />
+                    <input type="password" name="pass" class="contact_input" />
                     </div>                     
 
                     <div class="form_row">

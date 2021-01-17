@@ -36,7 +36,7 @@ public class PlaceOrder extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		long petid =Long.parseLong(request.getParameter("id"));
+		int petid =Integer.parseInt(request.getParameter("id"));
 		PetDao dao = new PetDao();
 		Pet p = dao.get(petid);
 		if(request.getSession().getAttribute("user")==null) {

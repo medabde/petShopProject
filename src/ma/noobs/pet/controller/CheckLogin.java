@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -42,10 +43,18 @@ public class CheckLogin extends HttpServlet {
 		// TODO Auto-generated method stub
 		String username = request.getParameter("username");
 		String pass = request.getParameter("pass");
+		boolean isRememberMe = (request.getParameter("terms")==null)?false:true;
+		
 		
 		UserDao dao = new UserDao();
 		User user = dao.checkLogin(username, pass, false);
 		if(user != null) {
+			if(isRememberMe) {
+				Cookie userId = new Cookie("userId", user.getId()+"");
+				userId.setMaxAge(3600000);
+				response.addCookie(userId);
+			}
+			
 			request.getSession().invalidate();
 			request.getSession().setAttribute("user", user);
 			response.sendRedirect("./home.jsp");
