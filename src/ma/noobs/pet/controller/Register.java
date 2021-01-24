@@ -40,17 +40,17 @@ public class Register extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String username = request.getParameter("username");
+		String username = request.getParameter("username").trim().toLowerCase();
 		String pass = request.getParameter("pass");
-		String email = request.getParameter("email");
+		String email = request.getParameter("email").trim().toLowerCase();
 		String phone = request.getParameter("phone");
 		String company = request.getParameter("company");
 		String address = request.getParameter("address");
 		
 		UserDao dao = new UserDao();
 		
-		if(dao.isUserNameExist(username)) {
-			request.setAttribute("errorMessage", "Username taken .. choose another one!");
+		if(dao.isUserNameExist(username) || dao.isEmailExist(email) ) {
+			request.setAttribute("errorMessage", "Username or Email taken .. choose another one!");
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("register.jsp") ;
 		    requestDispatcher.forward(request, response) ;
 		    return;

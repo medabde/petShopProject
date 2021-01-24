@@ -3,21 +3,51 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
     
 <%
+	int petPerPage = 5;
+	
+	
 	try{
+		int pagenumb = Integer.parseInt(request.getParameter("page"));
+		request.setAttribute("page", pagenumb);
+		
+		
 		CategoryDao catDao = new CategoryDao();
 		PetDao petDao = new PetDao();
 		if(Integer.parseInt(request.getParameter("id"))==0){
 			List<Pet> pets = petDao.getAll();
-			request.setAttribute("cat", new Category("ALL"));
-			request.setAttribute("pets", pets);
-				
+			
+			List<Pet> catPets = new ArrayList<>();
+			for(int i=0;i<pets.size();i++){
+				if(i< petPerPage * pagenumb && i>= petPerPage * (pagenumb-1)){
+					catPets.add(pets.get(i));
+				}
+			}
+			
+			request.setAttribute("cat", new Category(0,"ALL"));
+			
+			int nbpages = (pets.size()%petPerPage == 0)?pets.size()/petPerPage:pets.size()/petPerPage+1;
+			request.setAttribute("pets", catPets);
+			request.setAttribute("nbPages", nbpages);
+			request.setAttribute("totalPets", pets.size());
+			
 		}else{
 			Category cat = catDao.get(Integer.parseInt(request.getParameter("id")));
 			
 			if(cat==null) response.sendRedirect("home.jsp");
 			List<Pet> pets = petDao.getFromCat(cat.getId());
+			
+			List<Pet> catPets = new ArrayList<>();
+			for(int i=0;i<pets.size();i++){
+				if(i< petPerPage * pagenumb && i>= petPerPage * (pagenumb-1)){
+					catPets.add(pets.get(i));
+				}
+			}
+			
+			int nbpages = (pets.size()%petPerPage == 0)?pets.size()/petPerPage:pets.size()/petPerPage+1;
 			request.setAttribute("cat", cat);
-			request.setAttribute("pets", pets);
+			request.setAttribute("pets", catPets);
+			request.setAttribute("nbPages", nbpages);
+			request.setAttribute("totalPets", pets.size());
 			
 		}
 		}catch(Exception e){
@@ -44,7 +74,7 @@
        <div class="center_content">
        	<div class="left_content">
         	<div class="crumb_nav">
-            <a href="./home.jsp">home</a> &gt;&gt; ${cat.getName()}(${pets.size() })
+            <a href="./home.jsp">home</a> &gt;&gt; ${cat.getName()}( ${totalPets} )
             </div>
             <div class="title"><span class="title_icon"><img src="images/bullet1.gif" alt="" title="" /></span>${cat.getName()}</div>
            
@@ -70,7 +100,35 @@
                     
 
             <div class="pagination">
-            <span class="disabled"><<</span><span class="current">1</span><a href="#?page=2">2</a><a href="#?page=3">3</a>...<a href="#?page=199">10</a><a href="#?page=200">11</a><a href="#?page=2">>></a>
+            <c:choose>
+				  <c:when test="${page -1 == 0}">
+				  	<span class="disabled"><<</span>
+				  </c:when>
+				  <c:otherwise>
+				  	<a href="category.jsp?id=${cat.getId()}&page=${page-1}"><<</a>
+				  </c:otherwise>
+				</c:choose>
+           
+            <c:forEach var="j" begin="1" end="${nbPages}">  
+            	<c:choose>
+				  <c:when test="${page == j}">
+				  	<span class="current">${j}</span>
+				  </c:when>
+				  <c:otherwise>
+				  	<a href="category.jsp?id=${cat.getId()}&page=${j}">${j}</a>
+				  </c:otherwise>
+				</c:choose>
+			</c:forEach>
+			
+			<c:choose>
+				  <c:when test="${page == nbPages}">
+				  	<span class="disabled">>></span>
+				  </c:when>
+				  <c:otherwise>
+				  	<a href="category.jsp?id=${cat.getId()}&page=${page+1}">>></a>
+				  </c:otherwise>
+				</c:choose>
+			
             </div>  
             
             </div> 

@@ -15,7 +15,15 @@ try{
 	request.setAttribute("currencyMultiplier", c.getMultiplier());
 	
 	double d = (double) request.getAttribute("currencyMultiplier");
+	/*
+	HashMap<String,String> hash = new HashMap<>();
+
+	hash.put("idcategory", String.valueOf(4));
 	
+	
+	
+	petDao.update(pet,hash);
+	*/
 }catch(Exception e){
 	response.sendRedirect("home.jsp");
 }

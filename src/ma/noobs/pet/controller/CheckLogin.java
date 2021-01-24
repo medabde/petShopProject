@@ -41,7 +41,7 @@ public class CheckLogin extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String username = request.getParameter("username");
+		String username = request.getParameter("username").trim().toLowerCase();
 		String pass = request.getParameter("pass");
 		boolean isRememberMe = (request.getParameter("terms")==null)?false:true;
 		

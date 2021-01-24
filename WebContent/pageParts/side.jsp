@@ -105,9 +105,9 @@
              	<div class="title"><span class="title_icon"><img src="images/bullet5.gif" alt="" title="" /></span>Categories</div> 
                 
                 <ul class="list">
-                <li><a href="./category.jsp?id=0">All</a></li>
+                <li><a href="./category.jsp?id=0&page=1">All</a></li>
 	                <c:forEach items="${cats}" var="cat">
-	                	<li><a href="./category.jsp?id=<c:out value="${cat.getId()}"/>"><c:out value="${cat.getName()}"/></a></li>
+	                	<li><a href="./category.jsp?id=<c:out value="${cat.getId()}"/>&page=1"><c:out value="${cat.getName()}"/></a></li>
 	                </c:forEach>                                      
                 </ul>
                 

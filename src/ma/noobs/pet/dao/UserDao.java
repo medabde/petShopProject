@@ -146,6 +146,27 @@ public class UserDao {
 		
 		return false;
 	}
+	
+	public boolean isEmailExist(String email) {
+		String query = String.format("SELECT * FROM %s WHERE %s = '%s'", tableName,columns[3],email);
+		
+		try {
+			Statement stmt = conn.createStatement();  
+			ResultSet rs;
+			rs = stmt.executeQuery(query);
+			while(rs.next()) {
+				return true;
+			}
+						
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+		
+		
+		
+		return false;
+	}
 
 	
 	public void delete(User t) {

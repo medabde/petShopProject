@@ -3,9 +3,30 @@
 
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%
+
+
+int petPerPage = 5;
+int pagenumb = Integer.parseInt(request.getParameter("page"));
+request.setAttribute("page", pagenumb);
+
 PetDao petDao = new PetDao();
 List<Pet> specialpets = petDao.getSpecialPets();
-request.setAttribute("specialPets", specialpets);
+
+List<Pet> catPets = new ArrayList<>();
+for(int i=0;i<specialpets.size();i++){
+	if(i< petPerPage * pagenumb && i>= petPerPage * (pagenumb-1)){
+		catPets.add(specialpets.get(i));
+	}
+}
+
+int nbpages = (specialpets.size()%petPerPage == 0)?specialpets.size()/petPerPage:specialpets.size()/petPerPage+1;
+request.setAttribute("nbPages", nbpages);
+request.setAttribute("totalPets", specialpets.size());
+
+
+request.setAttribute("specialPets", catPets);
+
+
 
 %>
 
@@ -51,8 +72,39 @@ request.setAttribute("specialPets", specialpets);
 	            </c:forEach>            
             
                       <div class="pagination">
-            <span class="disabled"><<</span><span class="current">1</span><a href="#?page=2">2</a><a href="#?page=3">3</a>...<a href="#?page=199">10</a><a href="#?page=200">11</a><a href="#?page=2">>></a>
-            </div>   
+            <c:choose>
+				  <c:when test="${page -1 == 0}">
+				  	<span class="disabled"><<</span>
+				  </c:when>
+				  <c:otherwise>
+				  	<a href="specials.jsp?page=${page-1}"><<</a>
+				  </c:otherwise>
+				</c:choose>
+           
+            <c:forEach var="j" begin="1" end="${nbPages}">  
+            	<c:choose>
+				  <c:when test="${page == j}">
+				  	<span class="current">${j}</span>
+				  </c:when>
+				  <c:otherwise>
+				  	<a href="specials.jsp?page=${j}">${j}</a>
+				  </c:otherwise>
+				</c:choose>
+			</c:forEach>
+			
+			<c:choose>
+				  <c:when test="${page == nbPages}">
+				  	<span class="disabled">>></span>
+				  </c:when>
+				  <c:otherwise>
+				  	<a href="specials.jsp?page=${page+1}">>></a>
+				  </c:otherwise>
+				</c:choose>
+			
+            
+            
+            </div> 
+
                      
             
         <div class="clear"></div>
