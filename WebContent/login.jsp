@@ -19,7 +19,7 @@
        
        <div class="center_content">
        	<div class="left_content">
-            <div class="title"><span class="title_icon"><img src="images/bullet1.gif" alt="" title="" /></span>Login</div>
+            <div class="title"><span class="title_icon"><img src="images/bullet1.gif" alt="" title="" /></span>${messages.getString('nav_bar_login') }</div>
         
         	<div class="feat_prod_box_details">
             <p class="details">
@@ -27,30 +27,30 @@
             </p>
             
               	<div class="contact_form">
-                <div class="form_subtitle">login into your account</div>
+                <div class="form_subtitle">${messages.getString('from_account') }</div>
                  <form name="register" action="./CheckLogin" method="post">          
                     <div class="form_row">
-                    <label class="contact"><strong>Username:</strong></label>
+                    <label class="contact"><strong>${messages.getString('form_Username') }:</strong></label>
                     <input type="text" name="username" class="contact_input" />
                     </div>  
 
 
                     <div class="form_row">
-                    <label class="contact"><strong>Password:</strong></label>
+                    <label class="contact"><strong>${messages.getString('form_Password') }:</strong></label>
                     <input type="password" name="pass" class="contact_input" />
                     </div>                     
 
                     <div class="form_row">
                         <div class="terms">
                         <input type="checkbox" name="terms" />
-                        Remember me
+                        ${messages.getString('form_checkbox_account') }
                         </div>
                     </div>
                     <p style="color:red">
                     ${errorMessage}
                     </p>
                     <div class="form_row">
-                    <input type="submit" class="register" value="login" />
+                    <input type="submit" class="register" value="${messages.getString('nav_bar_login') }" />
                     </div>   
                     
                   </form>     

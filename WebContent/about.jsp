@@ -19,12 +19,12 @@
        
        <div class="center_content">
        	<div class="left_content">
-            <div class="title"><span class="title_icon"><img src="images/bullet1.gif" alt="" title="" /></span>About us</div>
+            <div class="title"><span class="title_icon"><img src="images/bullet1.gif" alt="" title="" /></span>${messages.getString('About_Our_Shop_title') }</div>
         
         	<div class="feat_prod_box_details">
             <p class="details">
             <img src="images/about.gif" alt="" title="" class="right" /> 
-              ${messages.getString("about_us_info") }</p>
+              ${messages.getString("about_our_shop_info") }</p>
             </div>	
             
               

@@ -19,7 +19,7 @@
        
        <div class="center_content">
        	<div class="left_content">
-            <div class="title"><span class="title_icon"><img src="images/bullet1.gif" alt="" title="" /></span>Register</div>
+            <div class="title"><span class="title_icon"><img src="images/bullet1.gif" alt="" title="" /></span>${messages.getString('nav_bar_register')}</div>
         
         	<div class="feat_prod_box_details">
             <p class="details">
@@ -27,51 +27,51 @@
             </p>
             
               	<div class="contact_form">
-                <div class="form_subtitle">create new account</div>
+                <div class="form_subtitle">${messages.getString('from_register') }</div>
                  <form name="register" action="./CheckRegister" method="post">          
                     <div class="form_row">
-                    <label class="contact"><strong>Username:</strong></label>
+                    <label class="contact"><strong>${messages.getString('form_Username') }:</strong></label>
                     <input type="text" name="username" class="contact_input" required/>
                     </div>  
 
 
                     <div class="form_row">
-                    <label class="contact"><strong>Password:</strong></label>
+                    <label class="contact"><strong>${messages.getString('form_Password') }:</strong></label>
                     <input type="password" name="pass" class="contact_input" required/>
                     </div> 
 
                     <div class="form_row">
-                    <label class="contact"><strong>Email:</strong></label>
+                    <label class="contact"><strong>${messages.getString('form_Email') }:</strong></label>
                     <input type="email" name="email" class="contact_input" required/>
                     </div>
 
 
                     <div class="form_row">
-                    <label class="contact"><strong>Phone:</strong></label>
+                    <label class="contact"><strong>${messages.getString('form_Phone') }:</strong></label>
                     <input type="text" name="phone" class="contact_input"required />
                     </div>
                     
                     <div class="form_row">
-                    <label class="contact"><strong>Company:</strong></label>
+                    <label class="contact"><strong>${messages.getString('form_Company') }:</strong></label>
                     <input type="text" name="company" class="contact_input" required/>
                     </div>
                     
                     <div class="form_row">
-                    <label class="contact"><strong>Adrres:</strong></label>
+                    <label class="contact"><strong>${messages.getString('form_Adrress') }:</strong></label>
                     <input type="text" name="address" class="contact_input" required />
                     </div>                    
 
                     <div class="form_row">
                         <div class="terms">
                         <input type="checkbox" name="terms" required />
-                        I agree to the <a href="#">terms &amp; conditions</a>                        </div>
+                        ${messages.getString('form_checkbox_register') } <a href="#">terms &amp; conditions</a>                        </div>
                     </div> 
                     <p style="color:red">
                     	${errorMessage}
                     </p>
                     
                     <div class="form_row">
-                    <input type="submit" class="register" value="register" />
+                    <input type="submit" class="register" value="${messages.getString('nav_bar_register')}" />
                     </div>   
                   </form>     
                 </div>  

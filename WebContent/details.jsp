@@ -68,9 +68,9 @@ try{
                 <div class="prod_det_box">
                 	<div class="box_top"></div>
                     <div class="box_center">
-                    <div class="prod_title">Details</div>
+                    <div class="prod_title">${messages.getString('price_Details_title') }</div>
                     <p class="details">${pet.getDescription()}</p>
-                    <div class="price"><strong>PRICE:</strong> <span class="red">${String.format("%.2f", pet.getPrice() * currencyMultiplier)} ${currencyCode}</span></div>
+                    <div class="price"><strong>${messages.getString('price_Details_content_price') }:</strong> <span class="red">${String.format("%.2f", pet.getPrice() * currencyMultiplier)} ${currencyCode}</span></div>
                     <a href="./PlaceOrder?id=${pet.getId()}" class="more"><img src="images/order_now.gif" alt="" title="" border="0" /></a>
                     <div class="clear"></div>
                     </div>
@@ -84,8 +84,8 @@ try{
             <div id="demo" class="demolayout">
 
                 <ul id="demo-nav" class="demolayout">
-                <li><a class="active" href="#tab1">More details</a></li>
-                <li><a class="" href="#tab2">Related books</a></li>
+                <li><a class="active" href="#tab1">${messages.getString('price_Details_content_more_details') }</a></li>
+                <li><a class="" href="#tab2">${messages.getString('price_Details_content_related_books') }</a></li>
                 </ul>
     
             <div class="tabs-container">

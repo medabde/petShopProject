@@ -42,25 +42,25 @@ if(request.getSession().getAttribute("user")==null){
        		<div class="logo"><a href="index.html"><img src="images/logo.gif" alt="" title="" border="0" /></a></div>            
         <div id="menu">
             <ul>                                                                       
-            <li <%if(request.getParameter("page")!=null)if(request.getParameter("page").equals("home")) out.print("class=\"selected\" "); %> ><a href="home.jsp">Home</a></li>
-            <li <%if(request.getParameter("page")!=null)if(request.getParameter("page").equals("about")) out.print("class=\"selected\" "); %> ><a href="about.jsp">About Us</a></li>
-            <li <%if(request.getParameter("page")!=null)if(request.getParameter("page").equals("pets")) out.print("class=\"selected\" "); %>  ><a href="category.jsp?id=0&page=1" >Pets</a></li>
-            <li <%if(request.getParameter("page")!=null)if(request.getParameter("page").equals("specials")) out.print("class=\"selected\" "); %> ><a href="specials.jsp?page=1" >Special Pets</a></li>
+            <li <%if(request.getParameter("page")!=null)if(request.getParameter("page").equals("home")) out.print("class=\"selected\" "); %> ><a href="home.jsp">${messages.getString('nav_bar_home_pet') }</a></li>
+            <li <%if(request.getParameter("page")!=null)if(request.getParameter("page").equals("about")) out.print("class=\"selected\" "); %> ><a href="about.jsp">${messages.getString('nav_bar_about_pet') }</a></li>
+            <li <%if(request.getParameter("page")!=null)if(request.getParameter("page").equals("pets")) out.print("class=\"selected\" "); %>  ><a href="category.jsp?id=0&page=1" >${message.getString('nav_bar_pet')}</a></li>
+            <li <%if(request.getParameter("page")!=null)if(request.getParameter("page").equals("specials")) out.print("class=\"selected\" "); %> ><a href="specials.jsp?page=1" >${messages.getString('nav_bar_specials_pets') }</a></li>
                         
             <c:if test="${user == null}">
-	            <li <%if(request.getParameter("page")!=null)if(request.getParameter("page").equals("register")) out.print("class=\"selected\" "); %> ><a href="register.jsp">Register</a></li>
+	            <li <%if(request.getParameter("page")!=null)if(request.getParameter("page").equals("register")) out.print("class=\"selected\" "); %> ><a href="register.jsp">${messages.getString('nav_bar_register') }</a></li>
 				
-	            <li <%if(request.getParameter("page")!=null)if(request.getParameter("page").equals("login")) out.print("class=\"selected\" "); %> ><a href="login.jsp">Login</a></li>
+	            <li <%if(request.getParameter("page")!=null)if(request.getParameter("page").equals("login")) out.print("class=\"selected\" "); %> ><a href="login.jsp">${messages.getString('nav_bar_login')}</a></li>
             
 			</c:if>
 			<c:if test="${user != null}">
 			
-	            <li <%if(request.getParameter("page")!=null)if(request.getParameter("page").equals("myAccount")) out.print("class=\"selected\" "); %>  ><a href="myAccount.jsp" >My account</a></li>
+	            <li <%if(request.getParameter("page")!=null)if(request.getParameter("page").equals("myAccount")) out.print("class=\"selected\" "); %>  ><a href="myAccount.jsp" >${messages.getString('nav_bar_my_account') }</a></li>
 					
                 <li><a href="./Disconnect" >Disconnect</a></li>
 	            
 			</c:if>
-            <li <%if(request.getParameter("page")!=null)if(request.getParameter("page").equals("contact")) out.print("class=\"selected\" "); %> ><a href="contact.jsp">Contact Us</a></li>
+            <li <%if(request.getParameter("page")!=null)if(request.getParameter("page").equals("contact")) out.print("class=\"selected\" "); %> ><a href="contact.jsp">${messages.getString('nav_bar_contact') }</a></li>
             
             </ul>
         </div>     

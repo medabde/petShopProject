@@ -31,7 +31,7 @@ request.setAttribute("featuredPets", featuredpets);
        <div class="center_content">
        	<div class="left_content">
         	
-            <div class="title"><span class="title_icon"><img src="images/bullet1.gif" alt="" title="" /></span>Featured pets</div>
+            <div class="title"><span class="title_icon"><img src="images/bullet1.gif" alt="" title="" /></span>${messages.getString('home_title_principale') }</div>
 	        	<c:forEach items="${featuredPets}" var="pet">
 		        	<div class="feat_prod_box">
 		            
@@ -42,7 +42,7 @@ request.setAttribute("featuredPets", featuredpets);
 		                    <div class="box_center">
 		                    <div class="prod_title"><c:out value="${pet.getName()}"/></div>
 		                    <p class="details"><c:out value="${pet.getDescription()}"/></p>
-		                    <a href="details.jsp?id=<c:out value="${pet.getId()}"/>" class="more">- more details -</a>
+		                    <a href="details.jsp?id=<c:out value="${pet.getId()}"/>" class="more">${messages.getString('special_more_details') }</a>
 		                    <div class="clear"></div>
 		                    </div>
 		                    
@@ -54,7 +54,7 @@ request.setAttribute("featuredPets", featuredpets);
             
         	
             
-           <div class="title"><span class="title_icon"><img src="images/bullet2.gif" alt="" title="" /></span>New pets</div> 
+           <div class="title"><span class="title_icon"><img src="images/bullet2.gif" alt="" title="" /></span>${messages.getString('home_new_pet') }</div> 
            
            <div class="new_products">
            

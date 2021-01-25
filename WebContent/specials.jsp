@@ -48,7 +48,7 @@ request.setAttribute("specialPets", catPets);
        <div class="center_content">
        	<div class="left_content">
         	
-            <div class="title"><span class="title_icon"><img src="images/bullet1.gif" alt="" title="" /></span>Special gifts</div>
+            <div class="title"><span class="title_icon"><img src="images/bullet1.gif" alt="" title="" /></span>${messages.getString('Special_gifts') }</div>
         
         <c:forEach items="${specialPets}" var="pet">
 		        	<div class="feat_prod_box">
@@ -61,7 +61,7 @@ request.setAttribute("specialPets", catPets);
 		                    <div class="box_center">
 		                    <div class="prod_title"><c:out value="${pet.getName()}"/></div>
 		                    <p class="details"><c:out value="${pet.getDescription()}"/></p>
-		                    <a href="details.jsp?id=<c:out value="${pet.getId()}"/>" class="more">- more details -</a>
+		                    <a href="details.jsp?id=<c:out value="${pet.getId()}"/>" class="more">${messages.getString('special_more_details') }</a>
 		                    <div class="clear"></div>
 		                    </div>
 		                    

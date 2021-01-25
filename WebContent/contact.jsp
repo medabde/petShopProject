@@ -16,39 +16,39 @@
 		
        <div class="center_content">
        	<div class="left_content">
-            <div class="title"><span class="title_icon"><img src="images/bullet1.gif" alt="" title="" /></span>Contact Us</div>
+            <div class="title"><span class="title_icon"><img src="images/bullet1.gif" alt="" title="" /></span>${messages.getString('nav_bar_contact') }</div>
         
         	<div class="feat_prod_box_details">
             <p class="details">
-             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.
-            </p>
+             ${messages.getString('contact_details') }
+             </p>
             
               	<div class="contact_form">
-                <div class="form_subtitle">all fields are requierd</div>          
+                <div class="form_subtitle">${messages.getString('form_contact') }</div>          
                     <div class="form_row">
-                    <label class="contact"><strong>Name:</strong></label>
+                    <label class="contact"><strong>${messages.getString('form_Username') }:</strong></label>
                     <input type="text" class="contact_input" />
                     </div>  
 
                     <div class="form_row">
-                    <label class="contact"><strong>Email:</strong></label>
+                    <label class="contact"><strong>${messages.getString('form_Email') }:</strong></label>
                     <input type="text" class="contact_input" />
                     </div>
 
 
                     <div class="form_row">
-                    <label class="contact"><strong>Phone:</strong></label>
+                    <label class="contact"><strong>${messages.getString('form_Phone') }:</strong></label>
                     <input type="text" class="contact_input" />
                     </div>
                     
                     <div class="form_row">
-                    <label class="contact"><strong>Company:</strong></label>
+                    <label class="contact"><strong>${messages.getString('form_Company') }:</strong></label>
                     <input type="text" class="contact_input" />
                     </div>
 
 
                     <div class="form_row">
-                    <label class="contact"><strong>Message:</strong></label>
+                    <label class="contact"><strong>${messages.getString('form_Message') }:</strong></label>
                     <textarea class="contact_textarea" ></textarea>
                     </div>
 

@@ -60,18 +60,18 @@
                 
                 
               <div class="cart">
-                  <div class="title"><span class="title_icon"><img src="images/cart.gif" alt="" title="" /></span>My cart</div>
+                  <div class="title"><span class="title_icon"><img src="images/cart.gif" alt="" title="" /></span>${messages.getString('My_cart') }</div>
                   <div class="home_cart_content">
-                  ${orders.size()} x items | <span class="red">TOTAL: ${String.format("%.2f", total * currencyMultiplier)} ${currencyCode}</span>
+                  ${orders.size()} x ${messages.getString('home_cart_content') } | <span class="red">${messages.getString('home_cart_content_TOTAL')}: ${String.format("%.2f", total * currencyMultiplier)} ${currencyCode}</span>
                   </div>
-                  <a href="cart.jsp" class="view_cart">view cart</a>
+                  <a href="cart.jsp" class="view_cart">${messages.getString('home_cart_content_view_cart') }</a>
               
               </div>
                        
             	
         
         
-             <div class="title"><span class="title_icon"><img src="images/bullet3.gif" alt="" title="" /></span>About Our Shop</div> 
+             <div class="title"><span class="title_icon"><img src="images/bullet3.gif" alt="" title="" /></span>${messages.getString('About_Our_Shop_title') }</div> 
              <div class="about">
              <p>
              <img src="images/about.gif" alt="" title="" class="right" />
@@ -102,7 +102,7 @@
              
              <div class="right_box">
              
-             	<div class="title"><span class="title_icon"><img src="images/bullet5.gif" alt="" title="" /></span>Categories</div> 
+             	<div class="title"><span class="title_icon"><img src="images/bullet5.gif" alt="" title="" /></span>${messages.getString('Categories_title') }</div> 
                 
                 <ul class="list">
                 <li><a href="./category.jsp?id=0&page=1">All</a></li>
@@ -111,7 +111,7 @@
 	                </c:forEach>                                      
                 </ul>
                 
-             	<div class="title"><span class="title_icon"><img src="images/bullet6.gif" alt="" title="" /></span>Partners</div> 
+             	<div class="title"><span class="title_icon"><img src="images/bullet6.gif" alt="" title="" /></span>${messages.getString('Partners_title') }</div> 
                 
                 <ul class="list">
                 <li><a href="#">accesories</a></li>
