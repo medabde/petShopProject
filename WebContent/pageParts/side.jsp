@@ -86,7 +86,7 @@
                     
                     <%int i=0; %>
                     <c:forEach items="${promotedPets}" var="pet">
-		                        <%if(i==5)break;else i++; %>
+		                        <%if(i==3)break;else i++; %>
 		                        <div class="new_prod_box">
 			                        <a href="details.jsp?id=${pet.getId()}">${pet.getName()}</a>
 			                        <div class="new_prod_bg">
